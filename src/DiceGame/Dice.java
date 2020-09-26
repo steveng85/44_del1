@@ -9,4 +9,9 @@ public class Dice {
         eyevalue = inputvalue;
     }
 
+    public int Roll(){
+        eyevalue = (int)(Math.random() * MAX) + 1;
+        return eyevalue;
+    }
+
 }
