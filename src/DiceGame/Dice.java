@@ -3,15 +3,15 @@ import java.util.Scanner;
 
 public class Dice {
     private final int MAX = 6;
-    private int eyevalue;
+    private int eyeValue;
 
-    public Dice( int inputvalue){
-        eyevalue = inputvalue;
+    public Dice(int eyes){
+        eyeValue = eyes;
     }
 
     public int Roll(){
-        eyevalue = (int)(Math.random() * MAX) + 1;
-        return eyevalue;
+        eyeValue = (int)(Math.random() * MAX) + 1;
+        return eyeValue;
     }
 
 }
