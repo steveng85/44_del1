@@ -6,7 +6,7 @@ public class Dice {
     private int eyeValue;
 
     public Dice(int eyes){
-        eyeValue = eyes;
+        this.eyeValue = eyes;
     }
 
     public int Roll(){
@@ -14,4 +14,8 @@ public class Dice {
         return eyeValue;
     }
 
+    public String textForm(){
+        String result = "You rolled a " + eyeValue;
+        return result;
+    }
 }
