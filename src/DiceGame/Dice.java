@@ -13,5 +13,5 @@ public class Dice {
         eyeValue = (int)(Math.random() * MAX) + 1;
         return eyeValue;
     }
-//tester kommentar
+
 }
