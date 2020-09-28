@@ -9,7 +9,7 @@ public class Game {
         Dice dice2 = new Dice(6);
     int player1, player2;
 
-
+//kage-test
 
     }
 }
