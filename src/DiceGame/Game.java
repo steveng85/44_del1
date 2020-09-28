@@ -1,12 +1,13 @@
 package DiceGame;
-import java.util.Random;
 import java.util.Scanner;
+import DiceGame.Dice;
 
 public class Game {
     public static void main(String[] args) {
     Scanner input = new Scanner(System.in);
-
-    int dice1, dice2, player1, player2;
+        Dice dice1 = new Dice(6);
+        Dice dice2 = new Dice(6);
+    int player1, player2;
 
 //kage-test
 
