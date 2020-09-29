@@ -16,7 +16,9 @@ public class Game {
         while (true) { //spillet
             Round();
         }
+    }
 
+    public void checkRules(){
 
     }
 
