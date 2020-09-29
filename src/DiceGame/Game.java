@@ -11,6 +11,7 @@ public class Game {
     Player player1 = new Player();
     Player player2 = new Player();
     Player currentPlayer;
+    boolean previousTurnRolled12 = false;
 
     public void startGame() {
         while (true) { //spillet
@@ -30,8 +31,7 @@ public class Game {
                 break;
             case 6 :
                 currentPlayer.changePoints(12);
-                dice1.Roll();
-                dice2.Roll();
+                Turn();
 
         }
     }
@@ -45,10 +45,14 @@ public class Game {
     }
 
     public void Turn() {
+        if (dice1.getEyeValue() == 6 && dice2.getEyeValue() == 6)
+        {
+
+        }
         dice1.Roll();
         dice2.Roll();
+        checkForWin();
         currentPlayer.changePoints(dice1.getEyeValue() + dice2.getEyeValue());
-        //method check if won (check for double ones)
         if (dice1.getEyeValue() == dice2.getEyeValue()) {
             if (dice1.getEyeValue() == 1) {
                 //set points to 0
@@ -67,6 +71,17 @@ public class Game {
             }
 
         }
+    }
+    public boolean checkForWin() {
+        boolean a;
+        if (currentPlayer.getPoints() >= 40) {
+            a = true;
+        }
+        else {
+            a = false;
+        }
+        return a;
+
     }
 }
 
