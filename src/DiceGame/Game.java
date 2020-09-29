@@ -21,7 +21,7 @@ public class Game {
     public void checkRules(){
         switch (dice1.getEyeValue()){
             case 1 :
-                currentPlayer.changePoints(0);
+                currentPlayer.setPoints(0);
                 break;
             case 2 :
             case 3 :
