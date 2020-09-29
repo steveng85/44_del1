@@ -19,7 +19,21 @@ public class Game {
     }
 
     public void checkRules(){
+        switch (dice1.getEyeValue()){
+            case 1 :
+                currentPlayer.changePoints(0);
+                break;
+            case 2 :
+            case 3 :
+            case 4 :
+            case 5 :
+                break;
+            case 6 :
+                currentPlayer.changePoints(12);
+                dice1.Roll();
+                dice2.Roll();
 
+        }
     }
 
     public void Round() {
