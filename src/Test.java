@@ -1,11 +1,16 @@
 import DiceGame.Dice;
+import DiceGame.Game;
 
 public class Test {
     public static void main(String[] args) {
-        Dice dice1 = new Dice(6);
-        Dice dice2 = new Dice (6);
+        Dice eye = new Dice();
+        Game eyes = new Game();
+
+        for (int times=0; times<=1000;times++){
 
 
+
+        }
     }
 
 

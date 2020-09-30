@@ -11,15 +11,31 @@ public class Game {
     Player player1 = new Player();
     Player player2 = new Player();
     Player currentPlayer;
+    boolean previousTurnRolled12 = false;
+    boolean gameInProgress = true;
 
     public void startGame() {
-        while (true) { //spillet
+        while (gameInProgress) { //Keeps game going until gameWon is called
             Round();
         }
     }
 
     public void checkRules(){
-
+        switch (dice1.getEyeValue()){
+            case 1 :
+                currentPlayer.setPoints(0);
+                break;
+            case 2 :
+            case 3 :
+            case 4 :
+            case 5 :
+                break;
+            case 6 :
+                if (previousTurnRolled12) {
+                    gameWon();
+                }
+                break;
+        }
     }
 
     public void Round() {
@@ -33,26 +49,24 @@ public class Game {
     public void Turn() {
         dice1.Roll();
         dice2.Roll();
-        currentPlayer.changePoints(dice1.getEyeValue() + dice2.getEyeValue());
-        //method check if won (check for double ones)
-        if (dice1.getEyeValue() == dice2.getEyeValue()) {
-            if (dice1.getEyeValue() == 1) {
-                //set points to 0
-            } else if (dice1.getEyeValue() == 6) {
-                //check if player points > 40
-                currentPlayer.changePoints(12);
-                dice1.Roll();
-                dice2.Roll();
-                if (dice1.getEyeValue() == dice2.getEyeValue() && dice1.getEyeValue() == 6) {
-                    //win game :)
-                } else {
-                } //find a way to run the Turn again without re-rolling dice.
-            }
-            else {
-                Turn();
-            }
+        checkForWin(); //checks for win BEFORE adding points to the total
 
+        currentPlayer.changePoints(dice1.getEyeValue() + dice2.getEyeValue()); //adds points to players' totals here.
+
+        if (dice1.getEyeValue() == dice2.getEyeValue()) {
+            checkRules(); //Runs when both dice are equal and checks for behavior for different pairs.
         }
+
+    }
+    public boolean checkForWin() {
+        boolean a;
+        a = currentPlayer.getPoints() >= 40;
+        return a;
+
+    }
+    public void gameWon() {
+        gameInProgress = false;
+        //do stuff when the game is won
     }
 }
 
