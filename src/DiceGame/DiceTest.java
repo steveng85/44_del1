@@ -8,8 +8,8 @@ class DiceTest {
 
     @org.junit.jupiter.api.Test
     void roll() {
-        Dice dice1 = new Dice(6);
-        Dice dice2 = new Dice (6);
+        Dice dice1 = new Dice();
+        Dice dice2 = new Dice();
 
         int[] sumOfDiceCount = new int[11];
         int sameEyesOnDice = 0;
