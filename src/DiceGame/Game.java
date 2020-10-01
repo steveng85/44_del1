@@ -24,19 +24,18 @@ public class Game {
 
     public void checkRules() {
         switch (dice1.getEyeValue()) {
-            case 1:
+            case 1 -> {
                 currentPlayer.setPoints(0);
-                break;
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-                break;
-            case 6:
+                System.out.println("Unlucky double ones!");
+                Turn();
+            }
+            case 2, 3, 4, 5 -> Turn();
+            case 6 -> {
                 if (previousTurnRolled12) {
                     gameWon(1);
                 }
-                break;
+                Turn();
+            }
         }
     }
 
@@ -44,12 +43,10 @@ public class Game {
         currentPlayer = player1;
         Turn();
         System.out.println("Player 1 rolled the dice and now has " + currentPlayer.getPoints() + " points!");
-        checkIfLostPoints();
 
         currentPlayer = player2;
         Turn();
         System.out.println("Player 2 rolled the dice and now has " + currentPlayer.getPoints() + " points!");
-        checkIfLostPoints();
 
     }
 
@@ -61,7 +58,14 @@ public class Game {
         currentPlayer.changePoints(dice1.getEyeValue() + dice2.getEyeValue()); //adds points to players' totals here.
 
         if (dice1.getEyeValue() == dice2.getEyeValue()) {
+            if (currentPlayer == player1) {
+                System.out.println("Player 1 rolled doubles and gets to go again!");
+            }
+            else {
+                System.out.println("Player 2 rolled doubles and gets to go again!");
+            }
             checkRules(); //Runs when both dice are equal and checks for behavior for different pairs.
+
         }
 
     }
@@ -96,11 +100,6 @@ public class Game {
 
     }
 
-    public void checkIfLostPoints() {
-        if (currentPlayer.getPoints() == 0) {
-            System.out.println("Unlucky double ones!");
-        }
-    }
 }
 
 
