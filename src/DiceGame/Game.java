@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Game {
     Scanner input = new Scanner(System.in);
-
+    Scanner PlayerName = new Scanner(System.in);
 
     Dice dice1 = new Dice();
     Dice dice2 = new Dice();
@@ -15,6 +15,21 @@ public class Game {
     boolean gameInProgress = true;
 
     public void startGame() {
+        //Player1 gives a name
+        System.out.println("Input a name for Player1");
+        String name1 = input.nextLine();
+        player1.setName(name1);
+        //player2 gives a name
+        System.out.println("Input a name for Player2");
+        String name2 = input.nextLine();
+        player2.setName(name2);
+        //Tells Who is who
+        System.out.println("Player1 is " + player1.getName());
+        System.out.println("Player2 is " + player2.getName());
+        //Telling the players how to start the game
+        System.out.println("Press enter to start and continue the game");
+
+
         while (gameInProgress) { //Keeps game going until gameWon is called
             if (input.nextLine().equals("")) {
                 Round();
@@ -42,11 +57,11 @@ public class Game {
     public void Round() {
         currentPlayer = player1;
         Turn();
-        System.out.println("Player 1 rolled the dice and now has " + currentPlayer.getPoints() + " points!");
+        System.out.println(player1.getName() + " rolled the dice and now has " + currentPlayer.getPoints() + " points!");
 
         currentPlayer = player2;
         Turn();
-        System.out.println("Player 2 rolled the dice and now has " + currentPlayer.getPoints() + " points!");
+        System.out.println(player2.getName() + " rolled the dice and now has " + currentPlayer.getPoints() + " points!");
 
     }
 
@@ -59,10 +74,10 @@ public class Game {
 
         if (dice1.getEyeValue() == dice2.getEyeValue()) {
             if (currentPlayer == player1) {
-                System.out.println("Player 1 rolled doubles and gets to go again!");
+                System.out.println(player1.getName() + " rolled doubles and gets to go again!");
             }
             else {
-                System.out.println("Player 2 rolled doubles and gets to go again!");
+                System.out.println(player2.getName() + " rolled doubles and gets to go again!");
             }
             checkRules(); //Runs when both dice are equal and checks for behavior for different pairs.
 
@@ -82,17 +97,17 @@ public class Game {
         switch (a) {
             case 0 -> {
                 if (currentPlayer == player1) {
-                    System.out.println("Player 1 rolled doubles and won!");
+                    System.out.println(player1.getName() + " rolled doubles and won!");
                 } else if (currentPlayer == player2) {
-                    System.out.println("Player 2 rolled doubles and won!");
+                    System.out.println(player2.getName() + " rolled doubles and won!");
                 }
                 System.exit(0);
             }
             case 1 -> {
                 if (currentPlayer == player1) {
-                    System.out.println("Player 1 rolled double sixes twice in a row and won.\nHow lucky!");
+                    System.out.println(player1.getName() + " rolled double sixes twice in a row and won.\nHow lucky!");
                 } else if (currentPlayer == player2) {
-                    System.out.println("Player 1 rolled double sixes twice in a row and won.\nHow lucky!");
+                    System.out.println(player2.getName() + " rolled double sixes twice in a row and won.\nHow lucky!");
                 }
                 System.exit(0);
             }
