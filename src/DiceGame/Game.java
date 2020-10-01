@@ -33,9 +33,7 @@ public class Game {
 
 
         while (gameInProgress) { //Keeps game going until gameWon is called
-            if (input.nextLine().equals("")) {
-                Round();
-            }
+            Round();
         }
     }
     public void printWelcomeMessage() {
@@ -66,13 +64,16 @@ public class Game {
 
     public void Round() {
         currentPlayer = player1;
+        System.out.println(currentPlayer.getName() + " press enter to roll");
+        input.nextLine();
         Turn();
-        System.out.println(player1.getName() + " rolled the dice and now has " + currentPlayer.getPoints() + " points!");
+        System.out.println(currentPlayer.getName() + " rolled the dice and now has " + currentPlayer.getPoints() + " points!\n");
 
         currentPlayer = player2;
+        System.out.println(currentPlayer.getName() + " press enter to roll");
+        input.nextLine();
         Turn();
-        System.out.println(player2.getName() + " rolled the dice and now has " + currentPlayer.getPoints() + " points!");
-
+        System.out.println(currentPlayer.getName() + " rolled the dice and now has " + currentPlayer.getPoints() + " points!\n");
     }
 
     public void Turn() {
