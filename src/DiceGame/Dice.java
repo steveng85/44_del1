@@ -6,7 +6,7 @@ public class Dice {
     private int eyeValue;
 
     public int Roll(){
-        for (int i = 0; i < (int)(Math.random() * 40) + 1; i++) {
+        for (int i = 0; i < (int)(Math.random() * 7) + 1; i++) {
             System.out.print(textValue((int)(Math.random() * MAX) + 1) + ".");
             try
             {
