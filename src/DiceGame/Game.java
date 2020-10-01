@@ -78,6 +78,7 @@ public class Game {
     public void Turn() {
         dice1.Roll();
         dice2.Roll();
+        System.out.println("You rolled a " + dice1.getEyeValue() + " and " + dice2.getEyeValue());
         checkForWin(); //checks for win BEFORE adding points to the total
 
         currentPlayer.changePoints(dice1.getEyeValue() + dice2.getEyeValue()); //adds points to players' totals here.
@@ -85,8 +86,7 @@ public class Game {
         if (dice1.getEyeValue() == dice2.getEyeValue()) {
             if (currentPlayer == player1) {
                 System.out.println(player1.getName() + " rolled doubles and gets to go again!");
-            }
-            else {
+            } else {
                 System.out.println(player2.getName() + " rolled doubles and gets to go again!");
             }
             checkRules(); //Runs when both dice are equal and checks for behavior for different pairs.
@@ -94,12 +94,10 @@ public class Game {
         }
 
     }
-
     public void checkForWin() {
         if (currentPlayer.getPoints() >= 40 && (dice1.getEyeValue() == dice2.getEyeValue()) && dice1.getEyeValue() != 1) {
             gameWon(0);
         }
-
     }
 
     public void gameWon(int a) {
