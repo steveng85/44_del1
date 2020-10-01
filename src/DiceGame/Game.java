@@ -46,15 +46,20 @@ public class Game {
         input.nextLine();
     }
     public void checkRules() {
+        if (dice1.getEyeValue() != dice2.getEyeValue()) return;
+
         switch (dice1.getEyeValue()) {
             case 1 -> {
                 currentPlayer.setPoints(0);
-                System.out.println("Unlucky double ones!");
+                System.out.println("Unlucky double ones! Roll again!");
                 Turn();
             }
-            case 2, 3, 4, 5 -> Turn();
+            case 2, 3, 4, 5 -> {
+                System.out.println(currentPlayer.getName() + " rolled doubles and gets to go again!");
+                Turn();
+            }
             case 6 -> {
-                if (previousTurnRolled12) {
+                if (currentPlayer.getLastRoll() == 12) {
                     gameWon(1);
                 }
                 Turn();
@@ -83,17 +88,9 @@ public class Game {
         checkForWin(); //checks for win BEFORE adding points to the total
 
         currentPlayer.changePoints(dice1.getEyeValue() + dice2.getEyeValue()); //adds points to players' totals here.
+        currentPlayer.setRoll(dice1.getEyeValue() + dice2.getEyeValue()); //save the roll.
 
-        if (dice1.getEyeValue() == dice2.getEyeValue()) {
-            if (currentPlayer == player1) {
-                System.out.println(player1.getName() + " rolled doubles and gets to go again!");
-            } else {
-                System.out.println(player2.getName() + " rolled doubles and gets to go again!");
-            }
-            checkRules(); //Runs when both dice are equal and checks for behavior for different pairs.
-
-        }
-
+        checkRules();
     }
     public void checkForWin() {
         if (currentPlayer.getPoints() >= 40 && (dice1.getEyeValue() == dice2.getEyeValue()) && dice1.getEyeValue() != 1) {
