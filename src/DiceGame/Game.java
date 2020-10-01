@@ -15,6 +15,8 @@ public class Game {
     boolean gameInProgress = true;
 
     public void startGame() {
+        // Welcome the players
+        printWelcomeMessage();
         //Player1 gives a name
         System.out.println("Input a name for Player1");
         String name1 = input.nextLine();
@@ -36,7 +38,15 @@ public class Game {
             }
         }
     }
-
+    public void printWelcomeMessage() {
+        System.out.println("Welcome to DiceGame!\n\n" +
+                "The players each roll a set of dice, where the value of the roll is converted into points." +
+                "\n\nYou win the game if you roll double when you have 40 points.\n\nIf you roll double 1s, your " +
+                "points will be reset.\n\nRolling a double gives an extra turn.\n\nFor the 40 point + scenario, " +
+                "where you hit double 1s, you do not win. Since the rule of waived points applies here instead.\n\n" +
+                "Press enter to start a new game");
+        input.nextLine();
+    }
     public void checkRules() {
         switch (dice1.getEyeValue()) {
             case 1 -> {
