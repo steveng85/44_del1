@@ -2,10 +2,10 @@ package DiceGame;
 
 import java.util.Scanner;
 
-import DiceGame.Dice;
-
 public class Game {
     Scanner input = new Scanner(System.in);
+
+
     Dice dice1 = new Dice();
     Dice dice2 = new Dice();
     Player player1 = new Player();
@@ -16,23 +16,25 @@ public class Game {
 
     public void startGame() {
         while (gameInProgress) { //Keeps game going until gameWon is called
-            Round();
+            if (input.nextLine().equals("")) {
+                Round();
+            }
         }
     }
 
-    public void checkRules(){
-        switch (dice1.getEyeValue()){
-            case 1 :
+    public void checkRules() {
+        switch (dice1.getEyeValue()) {
+            case 1:
                 currentPlayer.setPoints(0);
                 break;
-            case 2 :
-            case 3 :
-            case 4 :
-            case 5 :
+            case 2:
+            case 3:
+            case 4:
+            case 5:
                 break;
-            case 6 :
+            case 6:
                 if (previousTurnRolled12) {
-                    gameWon();
+                    gameWon(1);
                 }
                 break;
         }
@@ -41,9 +43,14 @@ public class Game {
     public void Round() {
         currentPlayer = player1;
         Turn();
+        System.out.println("Player 1 rolled the dice and now has " + currentPlayer.getPoints() + " points!");
+        checkIfLostPoints();
+
         currentPlayer = player2;
         Turn();
-        //check for possible winner?
+        System.out.println("Player 2 rolled the dice and now has " + currentPlayer.getPoints() + " points!");
+        checkIfLostPoints();
+
     }
 
     public void Turn() {
@@ -58,15 +65,41 @@ public class Game {
         }
 
     }
-    public boolean checkForWin() {
-        boolean a;
-        a = currentPlayer.getPoints() >= 40;
-        return a;
+
+    public void checkForWin() {
+        if (currentPlayer.getPoints() >= 40 && (dice1.getEyeValue() == dice2.getEyeValue()) && dice1.getEyeValue() != 1) {
+            gameWon(0);
+        }
 
     }
-    public void gameWon() {
+
+    public void gameWon(int a) {
         gameInProgress = false;
-        //do stuff when the game is won
+        switch (a) {
+            case 0 -> {
+                if (currentPlayer == player1) {
+                    System.out.println("Player 1 rolled doubles and won!");
+                } else if (currentPlayer == player2) {
+                    System.out.println("Player 2 rolled doubles and won!");
+                }
+                System.exit(0);
+            }
+            case 1 -> {
+                if (currentPlayer == player1) {
+                    System.out.println("Player 1 rolled double sixes twice in a row and won.\nHow lucky!");
+                } else if (currentPlayer == player2) {
+                    System.out.println("Player 1 rolled double sixes twice in a row and won.\nHow lucky!");
+                }
+                System.exit(0);
+            }
+        }
+
+    }
+
+    public void checkIfLostPoints() {
+        if (currentPlayer.getPoints() == 0) {
+            System.out.println("Unlucky double ones!");
+        }
     }
 }
 
