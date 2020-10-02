@@ -38,4 +38,9 @@ public class Dice {
     public String textForm(){
         return textValue(eyeValue);
     }
+
+    public int RollTest() {
+        eyeValue = (int)(Math.random() * MAX) + 1;
+        return eyeValue;
+    }
 }

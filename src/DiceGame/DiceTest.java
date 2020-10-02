@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class DiceTest {
 
     @org.junit.jupiter.api.Test
+/*En linje der fortæller IntelliJ at det er en test, som gør IntelliJ kan behandle koden som en test.  */
     void roll() {
         Dice dice1 = new Dice();
         Dice dice2 = new Dice();
@@ -18,8 +19,8 @@ class DiceTest {
         do {
 
             //Rolls two dices and get the sum
-            int dice1Roll = dice1.Roll();
-            int dice2Roll = dice2.Roll();
+            int dice1Roll = dice1.RollTest();
+            int dice2Roll = dice2.RollTest();
 
             int sum = dice1Roll + dice2Roll;
             sumOfDiceCount[sum-2] += 1;
